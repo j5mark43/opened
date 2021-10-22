@@ -1,11 +1,11 @@
 #include <nan.h>
-#if defined(_WIN32)
+#if defined(_WIN64)
 #include <io.h>
 #include <windows.h>
 #endif
 
 int open(const char* path) {
-#if defined(_WIN32)
+#if defined(_WIN64)
   int chars = MultiByteToWideChar(CP_UTF8, 0, path, -1, NULL, 0);
   if (chars == 0) return GetLastError();
   WCHAR* pathw = (WCHAR*) malloc(chars * sizeof(WCHAR));
